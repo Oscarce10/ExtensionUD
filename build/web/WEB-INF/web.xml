@@ -12,17 +12,25 @@
         <servlet-name>LogoutCTO</servlet-name>
         <servlet-class>controlador.LogoutCTO</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RegistroUsuario</servlet-name>
+        <servlet-class>controlador.RegistroUsuario</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CoordinadorCTO</servlet-name>
         <url-pattern>/coordinadorcto</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ValidarCTO</servlet-name>
-        <url-pattern>/validarcto</url-pattern>
+        <url-pattern>/validar</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>LogoutCTO</servlet-name>
         <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegistroUsuario</servlet-name>
+        <url-pattern>/registrousuario</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

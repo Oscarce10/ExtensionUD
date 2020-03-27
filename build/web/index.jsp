@@ -22,6 +22,12 @@
         <link
             href="https://fonts.googleapis.com/css?family=Lexend+Deca|Lexend+Giga&display=swap"
             rel="stylesheet">
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/script.js"></script>
     </head>
     <body>
         <% HttpSession sesion = request.getSession();
@@ -31,7 +37,7 @@
         %>
             <jsp:include page='<%=p%>'></jsp:include>
 
-        <% } else if (request.getParameter("pid") != null && sesion.getAttribute("id") != null && sesion.getAttribute("id") != "") {
+            <% } else if (request.getParameter("pid") != null && sesion.getAttribute("id") != null && sesion.getAttribute("id") != "" || request.getAttribute("action") != null) {
             // Create a String.
             String p;
             // Get the bytes from the String, using getBytes() API method of String.
@@ -49,11 +55,6 @@
         %>
 
 
-        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-        <script
-        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-        <script
-        src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="js/script.js"></script>
+        
     </body>
 </html>

@@ -1,3 +1,4 @@
+<%@page import="java.util.Enumeration"%>
 <div class="container" id="login">
     <div class="row">
         <div class="col-lg-7">
@@ -6,14 +7,14 @@
         </div>
 
         <div class="col col-lg-5">
-            <form class="form-signin" action="validarcto" method="post">
+            <form class="form-signin" action="validar" method="post">
                 <div class="brand text-center">
                     <div class="mb-4 logo">
                         <a href="#" title="Login"><i class="fas fa-book fa-7x"></i></a>
                     </div>
 
                     <h1 class="h1 mb-3 font-weight-normal" id="nombre">Unidad de Extension UD</h1>
-                    <% if (request.getParameter("login") != null && request.getParameter("login").equals("fail")) {%>
+                    <% if (request.getAttribute("login") != null && request.getAttribute("login").toString().equals("fail")) {%>
                     <div class="alert alert-danger" role="alert">
                         Correo o clave incorrectos.
                     </div>
@@ -45,7 +46,7 @@
                     <button class="btn btn-lg btn-primary btn-block btn-ingreso"
                             type="submit" name="ingresar">Ingresar
                     </button>
-                    <a href="#" id="registrese"><p>Registrese aca</p></a>
+                    <a href="registrousuario" id="registrese"><p>Registrese aca</p></a>
                 </div>
             </form>
         </div>  
