@@ -17,6 +17,7 @@
         <link href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="css/flatly.min.css">
         <link rel="stylesheet" href="css/styles.css">
+        <link rel="icon" href="img/logo/serverCluster.svg">
 
         <link
             href="https://fonts.googleapis.com/css?family=Lexend+Deca|Lexend+Giga&display=swap"
