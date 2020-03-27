@@ -1,0 +1,22 @@
+<%@page import="java.time.format.DateTimeFormatter"%>
+<%@page import="java.time.LocalDate"%>
+<%@page import="modelo.dto.CoordinadorDTO"%>
+
+<%@include file="nav.jsp"%>
+
+
+<div class="container" style="margin-top: 150px;">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-primary text-white">Bienvenido Administrador</div>
+                <div class="card-body">
+                    <p>Coordinador: <% out.print(coordinador.getPrimerNombre()+ " " + coordinador.getPrimerApellido());%></p>
+                    <p>Correo: <% out.print(coordinador.getCorreo());%></p>
+                    <p>Hoy es: <% out.print(DateTimeFormatter.ofPattern("dd/MM/yyy").format(LocalDate.now()));%></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

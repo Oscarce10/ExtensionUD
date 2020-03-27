@@ -1,0 +1,44 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Lexend Deca', sans-serif;
+}
+
+body{
+    background-color: #00DBDE;
+    background-image: linear-gradient(90deg, #00DBDE 0%, #FC00FF 100%);
+}
+
+a:hover{
+    color: black;
+}
+
+/* ---------------- LOGIN ------------------------------ */
+
+h1 {
+    font-family: 'Lexend Deca', sans-serif;
+}
+
+#login{
+    margin-top: 5%;
+}
+
+.form-signin {
+    width: 90%;
+    max-width: 500px;
+    padding: 15px;
+    margin: auto;
+}
+
+#registrese{
+    font-size: 1.1em;
+    color: white;
+}
+
+#registrese:hover{
+    color: #1ED760;
+    text-decoration: none;
+}
+
+#navLogo:hover{
+    color: #C9DFA4;
+}
