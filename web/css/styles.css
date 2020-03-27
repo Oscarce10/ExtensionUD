@@ -14,18 +14,17 @@ a:hover{
 
 /* ---------------- LOGIN ------------------------------ */
 
-h1 {
-    font-family: 'Lexend Deca', sans-serif;
+#nombre {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 35px;
 }
 
 #login{
-    margin-top: 5%;
+    margin-top: 15%;
 }
 
 .form-signin {
-    width: 90%;
-    max-width: 500px;
-    padding: 15px;
+    max-width: 100%;
     margin: auto;
 }
 
@@ -41,4 +40,18 @@ h1 {
 
 #navLogo:hover{
     color: #C9DFA4;
+}
+
+#image-inicio{
+    max-width:100%;
+    max-height:100%;
+}
+
+
+
+
+@media (max-width: 991px){
+    #image-inicio{
+    display: none;
+}
 }
