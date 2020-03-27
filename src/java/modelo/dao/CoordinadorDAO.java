@@ -47,4 +47,8 @@ public class CoordinadorDAO extends Persona{
      public String consultar(){
          return "SELECT primer_nombre, primer_apellido, correo FROM coordinador WHERE uuid LIKE unhex(?)";
      }
+     
+     public String consultarTodos(){
+         return "SELECT * FROM coordinador";
+     }
 }

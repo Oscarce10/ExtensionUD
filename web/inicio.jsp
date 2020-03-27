@@ -1,7 +1,7 @@
 <div class="container" id="login">
     <div class="row">
         <div class="col-lg-7">
-            <img src="img/logo/undraw_career_progress_ivdb.svg" width="auto" alt="Imagen inicio" id="image-inicio"/>
+            <img src="img/logo/undraw_career_progress_ivdb.svg" width="auto" alt="Imagen inicio" id="image-icon"/>
 
         </div>
 

@@ -10,6 +10,7 @@ import hash.Pbkdf2;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo.dao.CoordinadorDAO;
@@ -111,6 +112,23 @@ public class CoordinadorDTO extends Persona{
             con.cerrarConexion();
         }
         
+    }
+    
+    public ArrayList<CoordinadorDTO> consultarTodos(){
+        ArrayList<CoordinadorDTO> lista = null;
+        try {
+            PreparedStatement ps = con.getCon().prepareStatement(dao.consultarTodos());
+            System.out.println(ps.toString());
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                CoordinadorDTO ob = new CoordinadorDTO(Pbkdf2.bytesToString(rs.getBytes(1)), 
+                        rs.getString(2), rs.getString(3), "", rs.getString(5), rs.getString(6), "".getBytes(), "");
+                lista.add(ob);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CoordinadorDTO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lista;
     }
         
 }

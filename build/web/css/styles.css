@@ -20,7 +20,7 @@ a:hover{
 }
 
 #login{
-    margin-top: 15%;
+    margin-top: 10%;
 }
 
 .form-signin {
@@ -42,7 +42,7 @@ a:hover{
     color: #C9DFA4;
 }
 
-#image-inicio{
+#image-icon{
     max-width:100%;
     max-height:100%;
 }
