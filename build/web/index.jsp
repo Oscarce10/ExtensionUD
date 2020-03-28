@@ -30,8 +30,9 @@
         <script type="text/javascript" src="js/script.js"></script>
     </head>
     <body>
-        <% HttpSession sesion = request.getSession();
         
+        <% HttpSession sesion = request.getSession(); %>
+        <%
             if (request.getAttribute("pid") == null && sesion.getAttribute("id") != null && sesion.getAttribute("tipo") != null) {
                 String p = sesion.getAttribute("tipo").toString() + "/inicio.jsp";
         %>

@@ -17,19 +17,34 @@ public class Persona {
     public Persona() {
     }
 
-    public Persona(String id, String primerNombre, String segundoNombre, String primerApellido, String segundoApellido, String correo, byte[] salt, String clave) {
+    public Persona(String id, String primerNombre, String segundoNombre, String primerApellido, String segundoApellido, String correo, byte[] salt, String clave ) {
         this.id = id;
         this.primerNombre = primerNombre;
         this.segundoNombre = segundoNombre;
         this.primerApellido = primerApellido;
         this.segundoApellido = segundoApellido;
         this.correo = correo;
-        this.salt = salt;
         this.clave = clave;
+        this.salt = salt;
     }
 
     
 
+    public Persona(String primerNombre, String segundoNombre, String primerApellido, String segundoApellido, String correo, String clave) {
+        this.primerNombre = primerNombre;
+        this.segundoNombre = segundoNombre;
+        this.primerApellido = primerApellido;
+        this.segundoApellido = segundoApellido;
+        this.correo = correo;
+        this.clave = clave;
+    }
+    
+    
+
+    public Persona(String correo) {
+        this.correo = correo;
+    }   
+    
     public String getId() {
         return id;
     }

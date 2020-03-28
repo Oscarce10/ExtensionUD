@@ -53,17 +53,47 @@ a:hover{
     background: none;
     background-image: url(../img/logo/undraw_sorting_thoughts_6d48.svg);
     background-size: cover;
-    height: 100%;
 }
 
-#cardRegistroUsuario, #cardInicioCoordinador{
+#cardRegistroUsuario{
+    margin-top: -70px;
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(110,110,110, 0.1); /* Black w/opacity/see-through */
     color: #2C3E50;
 }
 
+#cardInicioCoordinador{
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(110,110,110, 0.1); /* Black w/opacity/see-through */
+    color: wheat;
+}
+
 label{
     font-size: 25px;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=radio] {
+    border: 0px;
+    width: 20px;
+    height: 20px;
+}
+
+select {
+    border:1px solid #ccc;
+    vertical-align:top;
+    height:40px;
+}
+input, select{
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
 }
 
 

@@ -1,4 +1,3 @@
-<%@page import="java.util.Enumeration"%>
 <div class="container" id="login">
     <div class="row">
         <div class="col-lg-7">
@@ -18,7 +17,14 @@
                     <div class="alert alert-danger" role="alert">
                         Correo o clave incorrectos.
                     </div>
-                    <% }%>
+                    <% }
+                        if (request.getAttribute("registro") != null && request.getAttribute("registro").toString().equals("success")) {%>
+                    <div class="alert alert-success" role="alert">
+                        Usuario registrado.
+                    </div>
+                    <% }
+
+                    %>
                 </div>
 
 

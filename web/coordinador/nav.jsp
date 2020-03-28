@@ -17,11 +17,10 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse"
-            id="navbarNav">
+            id="navbarResponsive">
             <ul class="nav navbar-nav ml-auto">
-                <li class="nav-item" role="presentation"><a class="nav-link" href="index.html">Home</a></li>
-                <li class="nav-item" role="presentation"><a class="nav-link" href="projects-grid-cards.html">Projects</a></li>
-                <li class="nav-item" role="presentation"><a class="nav-link" href="cv.html">CV</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" href="projects-grid-cards.html">registrar coordinadores</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" href="cv.html">Consultar Aspirantes</a></li>
                 <li class="nav-item mr-lg-4" >
                         <span class="nav-link">
                             Coordinador: <%out.print(coordinador.getPrimerNombre());%>  <%out.print(coordinador.getPrimerApellido());%>

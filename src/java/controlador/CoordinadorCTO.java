@@ -17,7 +17,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import modelo.dto.CoordinadorDTO;
+import org.apache.tomcat.util.codec.binary.Base64;
 
 /**
  *
@@ -36,7 +38,11 @@ public class CoordinadorCTO extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        if (request.getParameter("registr") != null && request.getParameter("registro").equals("coordinador")) {
+        HttpSession sesion = request.getSession();
+        response.setHeader("Cache-Control", "private, no-cache, no-store, must-revalidate, max-age=0, proxy-revalidate, s-maxage=0"); // HTTP 1.1.
+        response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
+        response.setHeader("Expires", "0"); // Proxies.
+        if (request.getParameter("registro") != null && request.getParameter("registro").equals("coordinador")) {
             try {
                 String id = UUID.randomUUID().toString();
                 String primerNombre = "Oscar";
@@ -61,6 +67,8 @@ public class CoordinadorCTO extends HttpServlet {
                 Logger.getLogger(CoordinadorCTO.class.getName()).log(Level.SEVERE, null, ex);
             }
 
+        } else if(sesion.getAttribute("id") != null && sesion.getAttribute("tipo") != null && sesion.getAttribute("tipo").toString().equals("coordinador")){
+            request.getRequestDispatcher("index.jsp?pid=" + Base64.encodeBase64String("coordinador/inicio.jsp".getBytes())).forward(request, response); 
         }
         else{
             response.sendRedirect("index.jsp");

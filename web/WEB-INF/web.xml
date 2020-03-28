@@ -18,7 +18,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>CoordinadorCTO</servlet-name>
-        <url-pattern>/coordinadorcto</url-pattern>
+        <url-pattern>/coordinador</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ValidarCTO</servlet-name>

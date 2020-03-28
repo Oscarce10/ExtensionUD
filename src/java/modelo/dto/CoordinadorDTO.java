@@ -30,7 +30,7 @@ public class CoordinadorDTO extends Persona{
     }
 
     public CoordinadorDTO(String id, String primerNombre, String segundoNombre, String primerApellido, String segundoApellido, String correo, byte[] salt, String clave) {
-        super(id, primerNombre, segundoNombre, primerApellido, segundoApellido, correo, salt, clave);
+        super(id, primerNombre, segundoNombre, primerApellido, segundoApellido, correo, salt,clave);
         dao = new CoordinadorDAO(id, primerNombre, segundoNombre, primerApellido, segundoApellido, correo, salt, clave);
     }
 
@@ -75,7 +75,6 @@ public class CoordinadorDTO extends Persona{
         try {
             PreparedStatement ps = con.getCon().prepareStatement(dao.autenticar());
             ps.setString(1, correo);
-            System.out.println(ps.toString());
             ResultSet rs = ps.executeQuery();
             if(rs.next()){
                 String id = Pbkdf2.bytesToString(rs.getBytes(2));

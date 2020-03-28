@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package test;
+package modelo.dto;
 
 import conexion.ConexionMysql;
 import java.sql.PreparedStatement;
@@ -12,25 +12,41 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import modelo.dto.CoordinadorDTO;
-import modelo.dto.NacionalidadDTO;
+import modelo.dao.NacionalidadDAO;
 
 /**
  *
  * @author USER
  */
-public class pruebas {
+public class NacionalidadDTO {
     
-    public static final ConexionMysql con = ConexionMysql.getInstance();
+    private int id;
+    private String nacionalidad;
+    private NacionalidadDAO dao;
+    private static final ConexionMysql con = ConexionMysql.getInstance();
+
+    public NacionalidadDTO(int id, String nacionalidad) {
+        this.id = id;
+        this.nacionalidad = nacionalidad;
+        dao = new NacionalidadDAO(id, nacionalidad);        
+    }
+
+    public NacionalidadDTO() {
+        dao = new NacionalidadDAO();  
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getNacionalidad() {
+        return nacionalidad;
+    }
     
-    
-   
-    
-    public static void main(String[] args) {
+    public ArrayList<NacionalidadDTO> consultar(){
         ArrayList<NacionalidadDTO> lista = null;
         try {
-            PreparedStatement ps = con.getCon().prepareStatement("SELECT * FROM nacionalidad");
-            System.out.println(ps.toString());
+            PreparedStatement ps = con.getCon().prepareStatement(dao.consultar());
             ResultSet rs = ps.executeQuery();
             lista = new ArrayList<>();
             while(rs.next()){
@@ -44,5 +60,6 @@ public class pruebas {
         }
         return lista;
     }
+        
     
 }

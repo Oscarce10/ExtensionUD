@@ -37,10 +37,7 @@ public class ValidarCTO extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setHeader("Cache-Control", "private, no-cache, no-store, must-revalidate, max-age=0, proxy-revalidate, s-maxage=0"); // HTTP 1.1.
-        response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
-        response.setHeader("Expires", "0"); // Proxies.
+            throws ServletException, IOException {        
         response.setContentType("text/html;charset=UTF-8");
         if(request.getParameter("ingresar") != null){
             String correo = request.getParameter("correo");
@@ -53,7 +50,9 @@ public class ValidarCTO extends HttpServlet {
                         HttpSession sesion = request.getSession();
                         sesion.setAttribute("tipo", "coordinador");
                         sesion.setAttribute("id", coordinador.getId());
-                        request.getRequestDispatcher("index.jsp?pid=" + Base64.encodeBase64String("coordinador/inicio.jsp".getBytes()) + "&id="+sesion.getAttribute("id").toString() + "&tipo="+sesion.getAttribute("tipo").toString()).forward(request, response);
+                        response.sendRedirect("coordinador");
+                        return;
+                        //request.getRequestDispatcher("index.jsp?pid=" + Base64.encodeBase64String("coordinador/inicio.jsp".getBytes()) + "&id="+sesion.getAttribute("id").toString() + "&tipo="+sesion.getAttribute("tipo").toString()).forward(request, response);
                     }
                 } catch (NoSuchAlgorithmException ex) {
                     Logger.getLogger(ValidarCTO.class.getName()).log(Level.SEVERE, null, ex);
