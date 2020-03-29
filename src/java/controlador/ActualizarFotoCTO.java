@@ -54,10 +54,7 @@ public class ActualizarFotoCTO extends HttpServlet {
 
             String[] extensiones = {"jpeg", "jpg", "png"};
             String[] extensionArchivo = nombre.split("\\.");
-            System.out.println("nombre: " + nombre);
-            System.out.println("extensionArchivo: " + extensionArchivo[1]);
             for (String item : extensiones) {
-                System.out.println("ITEM: " + item);
                 if (extensionArchivo[1].equals(item)) {
 
                     AspiranteDTO aspirante = new AspiranteDTO(sesion.getAttribute("id").toString());
@@ -65,11 +62,7 @@ public class ActualizarFotoCTO extends HttpServlet {
 
                     if (aspirante.getFoto() != null && !aspirante.getFoto().equals("")) {
                         File file = new File("D:\\Users\\USER\\Documents\\NetBeansProjects\\proyecto\\images\\" + aspirante.getFoto());
-                        if (file.delete()) {
-                            System.out.println("FILE DELETED");
-                        } else {
-                            System.out.println("FAIL TO DELETE FAIL");
-                        }
+                        file.delete();                        
                     }
                     File uploads = new File("D:\\Users\\USER\\Documents\\NetBeansProjects\\proyecto\\images");
                     String filename = new Date().getTime() + ".jpg";

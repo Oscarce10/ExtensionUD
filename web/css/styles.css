@@ -170,9 +170,13 @@ input, select{
 }
 
 @media (max-width: 991px){
-    #image-icon{
+    #image-icon, #foto-aspirante{
         display: none;
     }
+    #card-inicio-aspirante{
+    font-size: 25px !important;
+    height: 300px;
+}
 }
 
 

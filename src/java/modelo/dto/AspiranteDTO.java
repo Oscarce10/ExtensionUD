@@ -259,7 +259,6 @@ public class AspiranteDTO extends Persona{
             ps = con.getCon().prepareStatement(dao.subirFoto());
             ps.setString(1, foto);
             ps.setString(2, id.replace("-", ""));
-            System.out.println(ps.toString());
             if(ps.executeUpdate()>0){
                 return true;
             }

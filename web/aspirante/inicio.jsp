@@ -32,7 +32,7 @@
                             <%
                                 if (aspirante.getFoto() != null && aspirante.getFoto() != "") { %>
 
-                                <img src="images/<%out.print(aspirante.getFoto());%>" alt="Foto aspirante" class="rounded-full h-192 w-306 flex items-center justify-center">
+                                <img src="images/<%out.print(aspirante.getFoto());%>" alt="Foto aspirante" class="rounded-full h-192 w-306 flex items-center justify-center " id="foto-aspirante">
 
                             <% } else { %>
                             <a href="actualizarfoto"><i class='fas fa-user-circle fa-8x' data-toggle="tooltip" title="Actualizar foto de perfil" data-placement="right"></i></a>
