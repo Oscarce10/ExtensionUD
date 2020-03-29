@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <context-param>
+        <param-name>upload.location</param-name>
+        <param-value>/img</param-value>
+    </context-param>
     <servlet>
         <servlet-name>CoordinadorCTO</servlet-name>
         <servlet-class>controlador.CoordinadorCTO</servlet-class>
@@ -16,6 +20,14 @@
         <servlet-name>RegistroUsuario</servlet-name>
         <servlet-class>controlador.RegistroUsuario</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AspiranteCTO</servlet-name>
+        <servlet-class>controlador.AspiranteCTO</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ActualizarFotoCTO</servlet-name>
+        <servlet-class>controlador.ActualizarFotoCTO</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CoordinadorCTO</servlet-name>
         <url-pattern>/coordinador</url-pattern>
@@ -31,6 +43,14 @@
     <servlet-mapping>
         <servlet-name>RegistroUsuario</servlet-name>
         <url-pattern>/registrousuario</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AspiranteCTO</servlet-name>
+        <url-pattern>/aspirante</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ActualizarFotoCTO</servlet-name>
+        <url-pattern>/actualizarfoto</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

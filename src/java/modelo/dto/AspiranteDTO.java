@@ -51,7 +51,11 @@ public class AspiranteDTO extends Persona{
         this.dao = dao;
     }
 
+    public AspiranteDTO(String id, String primerNombre, String segundoNombre, String primerApellido, String segundoApellido, String correo, byte[] salt, String clave) {
+        super(id, primerNombre, segundoNombre, primerApellido, segundoApellido, correo, salt, clave);
+    }
     
+        
 
     public AspiranteDTO(String numero_documento, String celular, String telefono_fijo, int nacionalidad, int tipo_documento, int sexo, int formacion, int ciudad_residencia, String primerNombre, String segundoNombre, String primerApellido, String segundoApellido, String correo, String clave) {
         super(primerNombre, segundoNombre, primerApellido, segundoApellido, correo, clave);
@@ -74,14 +78,22 @@ public class AspiranteDTO extends Persona{
         }
         dao = new AspiranteDAO(numero_documento, celular, telefono_fijo, nacionalidad, tipo_documento, sexo, formacion, ciudad_residencia, primerNombre, segundoNombre, primerApellido, segundoApellido, correo, clave);
     }
+    
+    public AspiranteDTO(String id) {
+        super(id);        
+        this.id = id;
+        dao = new AspiranteDAO(id);
+    }    
 
     
     
-    public AspiranteDTO(String correo) {
+    public AspiranteDTO(String correo, String clave) {
         super();       
         this.correo = correo;
         dao = new AspiranteDAO(correo);
     }  
+    
+    
 
     
 
@@ -137,6 +149,12 @@ public class AspiranteDTO extends Persona{
         return ciudad_residencia;
     }
 
+    public void setFoto(String foto) {
+        this.foto = foto;
+    }
+    
+    
+
     @Override
     public String toString() {
         return "AspiranteDTO{" + "numero_documento=" + numero_documento + ", celular=" + celular + ", telefono_fijo=" + telefono_fijo + ", fecha_nacimiento=" + fecha_nacimiento + ", foto=" + foto + ", descripcion=" + descripcion + ", hoja_de_vida=" + hoja_de_vida + ", nacionalidad=" + nacionalidad + ", tipo_documento=" + tipo_documento + ", sexo=" + sexo + ", profesion=" + profesion + ", formacion=" + formacion + ", ciudad_residencia=" + ciudad_residencia + '}';
@@ -188,5 +206,69 @@ public class AspiranteDTO extends Persona{
         return false;
     }
     
+    public AspiranteDTO autenticar(){
+        AspiranteDTO aspirante = null;
+        PreparedStatement ps;
+        try {
+            ps = con.getCon().prepareStatement(dao.autenticar());
+            ps.setString(1, correo);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                String id = Pbkdf2.bytesToString(rs.getBytes(2));
+                String primer_nombre = rs.getString(3);
+                String segundo_nombre = rs.getString(4);
+                String primer_apellido = rs.getString(5);
+                String segundo_apellido = rs.getString(6);
+                String correo = rs.getString("correo");
+                String clave = rs.getString("clave");
+                byte[] salt = rs.getBytes("salt");
+                aspirante = new AspiranteDTO(id, primerNombre, segundoNombre, primerApellido, segundoApellido, correo, salt, clave);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AspiranteDTO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally{
+            con.cerrarConexion();
+        }
+        return aspirante;        
+    }
+    
+    public void consultarInicio(){
+        
+        try {
+            PreparedStatement ps = con.getCon().prepareStatement((dao.consultarInicio()));
+            ps.setString(1, id.replace("-", ""));
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                primerNombre = rs.getString("primer_nombre");
+                segundoNombre = rs.getString("segundo_nombre");
+                primerApellido = rs.getString("primer_apellido");
+                segundoApellido = rs.getString("segundo_apellido");
+                correo = rs.getString("correo");                
+                foto = rs.getString("foto");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AspiranteDTO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally{
+            con.cerrarConexion();
+        }
+    }
+    
+    public boolean subirFoto(){
+        PreparedStatement ps;
+        try {
+            ps = con.getCon().prepareStatement(dao.subirFoto());
+            ps.setString(1, foto);
+            ps.setString(2, id.replace("-", ""));
+            System.out.println(ps.toString());
+            if(ps.executeUpdate()>0){
+                return true;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AspiranteDTO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            con.cerrarConexion();
+        }
+        return false;
+    }
      
 }

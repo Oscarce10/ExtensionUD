@@ -15,7 +15,7 @@
         <link rel="stylesheet"
               href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
         <link href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="css/flatly.min.css">
+        <link rel="stylesheet" href="<%out.print(request.getContextPath());%>/css/flatly.min.css">
         <link rel="stylesheet" href="css/styles.css">
         <link rel="icon" href="img/logo/serverCluster.svg">
 
@@ -30,10 +30,10 @@
         <script type="text/javascript" src="js/script.js"></script>
     </head>
     <body>
-        
+       
         <% HttpSession sesion = request.getSession(); %>
         <%
-            if (request.getAttribute("pid") == null && sesion.getAttribute("id") != null && sesion.getAttribute("tipo") != null) {
+            if (request.getParameter("pid") == null && sesion.getAttribute("id") != null && sesion.getAttribute("tipo") != null) {
                 String p = sesion.getAttribute("tipo").toString() + "/inicio.jsp";
         %>
             <jsp:include page='<%=p%>'></jsp:include>

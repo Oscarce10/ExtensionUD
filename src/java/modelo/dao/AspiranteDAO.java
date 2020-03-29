@@ -52,10 +52,15 @@ public class AspiranteDAO extends Persona{
 
     
 
-    public AspiranteDAO(String correo) {
+    public AspiranteDAO(String correo, String clave) {
         super();
         this.correo = correo;
     }
+    
+    public AspiranteDAO(String id) {
+        super(id);        
+        this.id = id;
+    } 
     
     
     
@@ -70,4 +75,15 @@ public class AspiranteDAO extends Persona{
         return "SELECT * FROM aspirante WHERE CORREO LIKE ?";
     }
     
+    public String autenticar(){
+        return "SELECT * FROM aspirante WHERE correo LIKE ?";
+    }   
+    
+    public String consultarInicio(){
+        return "SELECT * FROM aspirante WHERE uuid LIKE UNHEX(?)";
+    }  
+    
+    public String subirFoto(){
+        return "UPDATE aspirante SET foto = ? WHERE uuid LIKE UNHEX(?)";
+    }
 }

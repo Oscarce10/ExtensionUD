@@ -14,6 +14,10 @@ a:hover{
     color: black;
 }
 
+.row{
+  min-height:100px;
+}
+
 /* ---------------- LOGIN ------------------------------ */
 
 #nombre {
@@ -53,6 +57,21 @@ a:hover{
     background: none;
     background-image: url(../img/logo/undraw_sorting_thoughts_6d48.svg);
     background-size: cover;
+    height: 100%
+}
+
+#jumboAspirante{
+    background: none;
+    background-image: url(../img/logo/undraw_home_cinema_l7yl.svg);
+    background-size: cover;
+    height: 100%
+}
+
+.card{
+    margin-top: -70px;
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(110,110,110, 0.1); /* Black w/opacity/see-through */
+    color: #2C3E50;
 }
 
 #cardRegistroUsuario{
@@ -62,10 +81,11 @@ a:hover{
     color: #2C3E50;
 }
 
-#cardInicioCoordinador{
+#cardInicioCoordinador, #cardInicioAspirante{
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(110,110,110, 0.1); /* Black w/opacity/see-through */
     color: wheat;
+    
 }
 
 label{
@@ -96,6 +116,53 @@ input, select{
   -webkit-box-sizing: border-box;
 }
 
+.form{
+    margin-top: 70px;
+}
+
+/*
+*
+* ==========================================
+* UPLOAD IMAGE
+* ==========================================
+*
+*/
+#upload {
+    opacity: 0;
+}
+
+#upload-label {
+    position: absolute;
+    top: 50%;
+    left: 1rem;
+    transform: translateY(-50%);
+}
+
+.image-area {
+    border: 2px dashed rgba(255, 255, 255, 0.7);
+    padding: 1rem;
+    position: relative;
+}
+
+.image-area::before {
+    content: 'Subir  imagen';
+    color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 0.8rem;
+    z-index: 1
+}
+
+.image-area img {
+    z-index: 2;
+    position: relative;
+}
+
+/* -------------------------------- */
 
 
 

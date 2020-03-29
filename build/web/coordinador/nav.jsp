@@ -1,10 +1,10 @@
 <%@page import="modelo.dto.CoordinadorDTO"%>
+
 <%
     HttpSession sesion = request.getSession();
     CoordinadorDTO coordinador = new CoordinadorDTO(sesion.getAttribute("id").toString());
     coordinador.consultar();
 %>
-<%@page import="controlador.CoordinadorCTO"%>
 <%@page import="org.apache.tomcat.util.codec.binary.Base64"%>
 
 <div class="navbar navbar-expand-lg fixed-top navbar-dark bg-primary">
