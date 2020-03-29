@@ -2,17 +2,26 @@
 <%@page import="java.util.Date"%>
 <%@include file="nav.jsp"%>
 
-<div class="container form">
+<div class="container" style="margin-top: 50px;">
+    
     <div class="row">
+        
         <div class="col col-lg-7 offset-2">
+            <%
+        if (request.getAttribute("fail") != null) {%>
+    <div class="alert alert-danger container" role="alert" style="margin-top: 150px;">
+        <% out.print(request.getAttribute("fail").toString()); %>
+    </div>
+    <% } %>
             <div class="card form">
+                
                 <div class="card-header bg-primary text-white text-center">Actualizar Foto Cliente</div>
                 <div class="card-body">
 
                     <form action="actualizarfoto" method="post" enctype="multipart/form-data">
                         <!-- Upload image input-->
                         <div class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm">
-                            <input id="upload" type="file" onchange="readURL(this);" class="form-control border-0" name="foto">
+                            <input id="upload" type="file" onchange="readURL(this);" class="form-control border-0" name="foto" required="required">
                             <label id="upload-label" for="upload" class="font-weight-light text-muted" style="font-size: 18px">Subir
                                 archivo</label>
                             <div class="input-group-append">

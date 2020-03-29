@@ -18,6 +18,12 @@
         <div class="collapse navbar-collapse"
              id="navbarResponsive">
             <ul class="nav navbar-nav ml-auto">
+                <li class="nav-item mr-lg-4" >
+                    <span class="nav-link">
+                        Aspirante: <%out.print(aspirante.getPrimerNombre());%>  <%out.print(aspirante.getPrimerApellido());%>
+                    </span>
+                </li>
+                
                 
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -30,11 +36,7 @@
                         <a class="dropdown-item" href="#">Ver datos</a>
                     </div>
                 </li>
-                <li class="nav-item mr-lg-4" >
-                    <span class="nav-link">
-                        Aspirante: <%out.print(aspirante.getPrimerNombre());%>  <%out.print(aspirante.getPrimerApellido());%>
-                    </span>
-                </li>
+                
                 <li class="nav-item" role="presentation"><a class="nav-link" href="logout">Salir </a></li>
             </ul>
         </div>

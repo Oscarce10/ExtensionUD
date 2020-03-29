@@ -1,5 +1,8 @@
-$(document).ready(function() {
-    console.log('WTF.. THIS LOGS IN THE CONSOLE!?!?!?!');
+$(document).ready(function () {
 
-   
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+
+
 });
