@@ -102,4 +102,34 @@ public class AspiranteDAO extends Persona{
                 " FROM aspirante " +
                 " WHERE CONCAT(primer_nombre, ' ', segundo_nombre, ' ', primer_apellido, ' ', segundo_apellido) LIKE ? OR numero_documento LIKE ? OR correo LIKE ?";
     }
+    
+    public String tipoDocumento(){
+        return  "SELECT d.tipo_documento "
+                + "FROM tipo_documento as d, aspirante as a "
+                + "WHERE a.tipo_documento = d.id AND a.uuid LIKE UNHEX(?)";
+    }
+    
+    public String nacionalidad(){
+        return  "SELECT n.nacionalidad "
+                + "FROM nacionalidad as n, aspirante as a "
+                + "WHERE a.nacionalidad = n.id AND a.uuid LIKE UNHEX(?)";
+    }
+    
+    public String ciudad_residencia(){
+        return  "SELECT c.ciudad_residencia "
+                + "FROM ciudad_residencia as c, aspirante as a "
+                + "WHERE a.ciudad_residencia = c.id AND a.uuid LIKE UNHEX(?)";
+    }
+    
+    public String genero(){
+        return  "SELECT g.sexo "
+                + "FROM sexo as g, aspirante as a "
+                + "WHERE a.sexo = g.id AND a.uuid LIKE UNHEX(?)";
+    }
+    
+    public String formacion(){
+        return  "SELECT f.tipo_de_formacion "
+                + "FROM formacion as f, aspirante as a "
+                + "WHERE a.sexo = f.id AND a.uuid LIKE UNHEX(?)";
+    }
 }

@@ -28,8 +28,8 @@
 
 </div>
 
-<div class="modal fade" id="modalCliente" role="dialog">
-    <div class="modal-dialog modal-lg">
+<div class="modal fade bd-example-modal-xl" tabindex="-1" id="modalAspirante" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content" id="modalContent"></div>
     </div>
 </div>

@@ -87,6 +87,41 @@ public abstract class Persona {
         return correo;
     }
 
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setPrimerNombre(String primerNombre) {
+        this.primerNombre = primerNombre;
+    }
+
+    public void setSegundoNombre(String segundoNombre) {
+        this.segundoNombre = segundoNombre;
+    }
+
+    public void setPrimerApellido(String primerApellido) {
+        this.primerApellido = primerApellido;
+    }
+
+    public void setSegundoApellido(String segundoApellido) {
+        this.segundoApellido = segundoApellido;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    public void setClave(String clave) {
+        this.clave = clave;
+    }
+
+    public void setSalt(byte[] salt) {
+        this.salt = salt;
+    }
+    
+    
+    
+
     @Override
     public String toString() {
         return "Persona{" + "id=" + id + ", primerNombre=" + primerNombre + ", segundoNombre=" + segundoNombre + ", primerApellido=" + primerApellido + ", segundoApellido=" + segundoApellido + ", correo=" + correo + ", salt=" + salt + ", clave=" + clave + '}';

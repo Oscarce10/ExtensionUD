@@ -188,6 +188,44 @@ public class AspiranteDTO extends Persona{
         this.profesion = profesion;
     }
 
+    public void setNumero_documento(String numero_documento) {
+        this.numero_documento = numero_documento;
+    }
+
+    public void setCelular(String celular) {
+        this.celular = celular;
+    }
+
+    public void setTelefono_fijo(String telefono_fijo) {
+        this.telefono_fijo = telefono_fijo;
+    }
+
+    public void setNacionalidad(int nacionalidad) {
+        this.nacionalidad = nacionalidad;
+    }
+
+    public void setTipo_documento(int tipo_documento) {
+        this.tipo_documento = tipo_documento;
+    }
+
+    public void setSexo(int sexo) {
+        this.sexo = sexo;
+    }
+
+    public void setFormacion(int formacion) {
+        this.formacion = formacion;
+    }
+
+    public void setCiudad_residencia(int ciudad_residencia) {
+        this.ciudad_residencia = ciudad_residencia;
+    }
+
+    public void setDao(AspiranteDAO dao) {
+        this.dao = dao;
+    }
+    
+    
+
     @Override
     public String toString() {
         return "AspiranteDTO{" + super.toString() + "numero_documento=" + numero_documento + ", celular=" + celular + ", telefono_fijo=" + telefono_fijo + ", fecha_nacimiento=" + fecha_nacimiento + ", foto=" + foto + ", descripcion=" + descripcion + ", hoja_de_vida=" + hoja_de_vida + ", profesion=" + profesion + ", nacionalidad=" + nacionalidad + ", tipo_documento=" + tipo_documento + ", sexo=" + sexo + ", formacion=" + formacion + ", ciudad_residencia=" + ciudad_residencia + ", dao=" + dao + '}';
@@ -276,12 +314,20 @@ public class AspiranteDTO extends Persona{
             ps.setString(1, id.replace("-", ""));
             ResultSet rs = ps.executeQuery();
             if(rs.next()){
+                celular = rs.getString("telefono");
+                telefono_fijo = rs.getString("telefono_fijo");
+                numero_documento = rs.getString("numero_documento");
                 primerNombre = rs.getString("primer_nombre");
                 segundoNombre = rs.getString("segundo_nombre");
                 primerApellido = rs.getString("primer_apellido");
                 segundoApellido = rs.getString("segundo_apellido");
                 correo = rs.getString("correo");                
                 foto = rs.getString("foto");
+                tipo_documento = rs.getInt("tipo_documento");
+                nacionalidad = rs.getInt("nacionalidad");
+                ciudad_residencia = rs.getInt("ciudad_residencia");
+                sexo = rs.getInt("sexo");
+                formacion = rs.getInt("formacion");
             }
         } catch (SQLException ex) {
             Logger.getLogger(AspiranteDTO.class.getName()).log(Level.SEVERE, null, ex);
@@ -345,7 +391,7 @@ public class AspiranteDTO extends Persona{
     }
     
     public ArrayList<AspiranteDTO> filtroAspirante(String filtro){
-        ArrayList<AspiranteDTO> lista = null;
+        ArrayList<AspiranteDTO> lista = new ArrayList<>();
         try {            
             PreparedStatement ps = con.getCon().prepareStatement(dao.filtroAspirante());
             ps.setString(1, "%" + filtro + "%");
@@ -354,16 +400,16 @@ public class AspiranteDTO extends Persona{
             System.out.println(ps.toString());
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
-                String numDoc = rs.getString(1);
-                String id = Pbkdf2.bytesToString(rs.getBytes(2));
-                String foto = rs.getString(3);
-                String primerNombre = rs.getString(4);
-                String segNombre = rs.getString(5);
-                String primerApellido = rs.getString(6);
-                String segundoApellido = rs.getString(7);
-                String correo = rs.getString(8);
-                AspiranteDTO aspirante = new AspiranteDTO(numero_documento, id, foto, primerNombre, segundoNombre, primerApellido, segundoApellido, correo);
-                
+                AspiranteDTO aspirante = new AspiranteDTO();
+                aspirante.setNumero_documento(rs.getString(1));
+                aspirante.setId(Pbkdf2.bytesToString(rs.getBytes(2)));
+                aspirante.setFoto(rs.getString(3));
+                aspirante.setPrimerNombre(rs.getString(4));
+                aspirante.setSegundoNombre(rs.getString(5));
+                aspirante.setPrimerApellido(rs.getString(6));
+                aspirante.setSegundoApellido(rs.getString(7));
+                aspirante.setCorreo(rs.getString(8));               
+                //AspiranteDTO aspirante = new AspiranteDTO(numero_documento, id, foto, primerNombre, segundoNombre, primerApellido, segundoApellido, correo);                
                 System.out.println(aspirante.toString());
                 lista.add(aspirante);
             }
@@ -373,6 +419,92 @@ public class AspiranteDTO extends Persona{
             con.cerrarConexion();
         }
         return lista;
+    }
+    
+    public String tipoDocumento(){
+        String res = "";
+        try {
+            PreparedStatement ps = con.getCon().prepareStatement(dao.tipoDocumento());
+            ps.setString(1, id.replace("-", ""));
+            System.out.println(ps.toString());
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                res = rs.getString(1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AspiranteDTO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            con.cerrarConexion();
+        }
+        return res;
+    }
+    
+    public String nacionalidad(){
+        String res = "";
+        try {
+            PreparedStatement ps = con.getCon().prepareStatement(dao.nacionalidad());
+            ps.setString(1, id.replace("-", ""));
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                res = rs.getString(1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AspiranteDTO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            con.cerrarConexion();
+        }
+        return res;
+    }
+    
+    public String ciudad_residencia(){
+        String res = "";
+        try {
+            PreparedStatement ps = con.getCon().prepareStatement(dao.ciudad_residencia());
+            ps.setString(1, id.replace("-", ""));
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                res = rs.getString(1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AspiranteDTO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            con.cerrarConexion();
+        }
+        return res;
+    }
+    
+    public String genero(){
+        String res = "";
+        try {
+            PreparedStatement ps = con.getCon().prepareStatement(dao.genero());
+            ps.setString(1, id.replace("-", ""));
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                res = rs.getString(1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AspiranteDTO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            con.cerrarConexion();
+        }
+        return res;
+    }
+    
+    public String formacion(){
+        String res = "";
+        try {
+            PreparedStatement ps = con.getCon().prepareStatement(dao.formacion());
+            ps.setString(1, id.replace("-", ""));
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                res = rs.getString(1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AspiranteDTO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            con.cerrarConexion();
+        }
+        return res;
     }
      
 }

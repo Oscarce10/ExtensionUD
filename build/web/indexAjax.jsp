@@ -1,17 +1,14 @@
-<%-- 
-    Document   : indexAjax
-    Created on : 29/03/2020, 10:36:43 PM
-    Author     : USER
---%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>Hello World!</h1>
-    </body>
-</html>
+<%@page import="org.apache.tomcat.util.codec.binary.Base64"%>
+<% HttpSession sesion = request.getSession(); %>
+<%
+    if (request.getParameter("pid") == null || sesion.getAttribute("id") == null && sesion.getAttribute("tipo") != null && !sesion.getAttribute("tipo").equals("coordinador")) {
+        request.getRequestDispatcher("404.html").forward(request, response);
+        return;
+    } else {
+        
+        String p;
+        byte[] byteArray = Base64.decodeBase64(request.getParameter("pid").getBytes());
+        p = new String(byteArray); 
+        %>
+         <jsp:include page='<%=p%>'></jsp:include>
+    <% } %>

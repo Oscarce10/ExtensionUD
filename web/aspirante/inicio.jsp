@@ -21,8 +21,7 @@
 <% } %>
 
 
-<div class="jumbotron container" id="jumboAspirante" <%
-    if (request.getAttribute("upload") == null) %> style="margin-top: 150px;">
+<div class="jumbotron container" id="jumboAspirante" style="margin-top: 150px;">
 
     <div class="row">        
         <div class="col-12">

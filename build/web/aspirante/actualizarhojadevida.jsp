@@ -35,7 +35,7 @@
 
                         <div class="form-group">
                             <label for="descripcion">Descripcion personal</label>                              
-                            <textarea id="editor" class="md:w-2/3" name="descripcion"><%out.print((profesion!= null)?descripcion:"");%></textarea>
+                            <textarea id="editor" class="md:w-2/3" name="descripcion"><%out.print((descripcion!= null)?descripcion:"");%></textarea>
                         </div>
 
                         <br>
