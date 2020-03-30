@@ -5,7 +5,6 @@
  */
 package modelo.dto;
 
-import com.sun.org.apache.regexp.internal.recompile;
 import conexion.ConexionMysql;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

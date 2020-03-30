@@ -7,7 +7,6 @@ package controlador;
 
 import hash.Pbkdf2;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.util.logging.Level;
@@ -19,7 +18,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import modelo.dto.AspiranteDTO;
 import modelo.dto.CoordinadorDTO;
-import org.apache.tomcat.util.codec.binary.Base64;
 
 /**
  *

@@ -87,17 +87,16 @@ img{
 }
 
 
-label{
+/*label{
     color: #18BC9C;
-    font-size: 25px;
-    
-}
+    font-size: 25px;    
+}*/
 
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 input[type=radio] {
@@ -112,9 +111,9 @@ select {
     height:40px;
 }
 input, select{
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
 }
 
 .form{
@@ -174,8 +173,13 @@ input, select{
         display: none;
     }
     #card-inicio-aspirante{
-    font-size: 25px !important;
-    height: 300px;
+        font-size: 25px !important;
+        height: 300px;
+    }
+    .footer {
+
+    display: none;
+
 }
 }
 
@@ -193,3 +197,149 @@ input, select{
     font-size: 30px;
     height: 300px;
 }
+
+.registro-cv{
+    background: none;    
+    height: 100%
+}
+
+#jumbo-registro-cv{
+    background-image: url(../img/logo/undraw_resume_folder_2_arse.svg);
+    background-size: cover;    
+}
+
+#card-registro-cv{
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(53,54,58, 0.5); /* Black w/opacity/see-through */
+    color: #FFFFFF;
+    font-size: 21px; 
+}
+
+#card-registro-cv input{
+    color: #000000;
+}
+
+/*
+*
+* ==========================================
+* UPLOAD PDF
+* ==========================================
+*
+*/
+
+
+.zone {      
+    margin: auto;
+    top: 0; left: 0; bottom: 0; right: 0;
+    background-color: #FBAB7E;
+    background-image: linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%);
+    width:80%;
+    height:50%;  
+    border:2px dashed white;
+    text-align:center;
+    color: white;
+    z-index: 20;
+    transition: all 0.3s ease-out;
+    box-shadow: 0 0 0 1px rgba(255,255,255,.05),inset 0 0 .25em 0 rgba(0,0,0,.25);
+    .btnCompression {
+        .btn {
+
+        } 
+        .active {
+            background: #EB6A5A;
+            color:white;
+        }
+    }
+    i {
+        text-align: center;
+        font-size: 10em;  
+        color:#fff;
+        margin-top: 50px;
+    }
+    .selectFile {
+        height: 50px;
+        margin: 20px auto;
+        position: relative;
+        width: 200px;          
+    }
+
+    label, input {
+        cursor: pointer;
+        display: block;
+        height: 50px;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        border-radius: 5px;          
+    }
+
+    label {
+        background: #fff;
+        color:#EB6A5A;
+        display: inline-block;
+        font-size: 1.2em;
+        line-height: 50px;
+        padding: 0;
+        text-align: center;
+        white-space: nowrap;
+        text-transform: uppercase;
+        font-weight: 400;   
+        box-shadow: 0 1px 1px gray;
+    }
+
+    input[type=file] {
+        opacity: 0;
+    }
+
+}
+.zone.in {
+    color:white;
+    border-color:white;
+    background: radial-gradient(ellipse at center,#EB6A5A 0,#c9402f 100%);
+    i {          
+        color:#fff;
+    }
+    label {
+        background: #fff;
+        color:#EB6A5A;
+    }
+}
+.zone.hover {
+    color:gray;
+    border-color:white;
+    background:#fff;
+    border:5px dashed gray;
+    i {          
+        color:#EB6A5A;
+    }
+    label {
+        background: #fff;
+        color:#EB6A5A;
+    }
+}
+.zone.fade {
+    transition: all 0.3s ease-out;
+    opacity: 1;
+}
+
+/*
+*
+* ==========================================
+* 
+*/
+
+/* ------------------ FOOTER ----------------------- */
+
+.footer {
+
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 60px;
+    line-height: 60px; /* Vertically center the text there */
+    background-color: #ffd387;
+    position: fixed;
+    bottom: 0;
+
+}
+

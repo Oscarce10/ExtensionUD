@@ -15,7 +15,7 @@
     <% } %>
             <div class="card form">
                 
-                <div class="card-header bg-primary text-white text-center">Actualizar Foto Cliente</div>
+                <div class="card-header bg-primary text-white text-center">Actualizar Foto Aspirante</div>
                 <div class="card-body">
 
                     <form action="actualizarfoto" method="post" enctype="multipart/form-data">
@@ -55,6 +55,7 @@
 
 
 <script>
+    document.title = "Actualizar foto";
     /*  ==========================================
      SHOW UPLOADED IMAGE
      * ========================================== */

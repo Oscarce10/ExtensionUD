@@ -9,7 +9,7 @@ package modelo.dto;
  *
  * @author USER
  */
-public class Persona {
+public abstract class Persona {
     
     protected String id, primerNombre, segundoNombre, primerApellido, segundoApellido, correo, clave;
     protected byte[] salt;
@@ -27,6 +27,14 @@ public class Persona {
         this.clave = clave;
         this.salt = salt;
     }
+    
+    public Persona(String primerNombre, String segundoNombre, String primerApellido, String segundoApellido, String correo) {
+        this.primerNombre = primerNombre;
+        this.segundoNombre = segundoNombre;
+        this.primerApellido = primerApellido;
+        this.segundoApellido = segundoApellido;
+    }
+    
 
     
 
@@ -38,6 +46,8 @@ public class Persona {
         this.correo = correo;
         this.clave = clave;
     }
+    
+    
     
     
 

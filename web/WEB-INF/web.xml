@@ -28,6 +28,14 @@
         <servlet-name>ActualizarFotoCTO</servlet-name>
         <servlet-class>controlador.ActualizarFotoCTO</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ActualizarHojaDeVida</servlet-name>
+        <servlet-class>controlador.ActualizarHojaDeVidaCTO</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>FiltroAspiranteCTO</servlet-name>
+        <servlet-class>controlador.FiltroAspiranteCTO</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CoordinadorCTO</servlet-name>
         <url-pattern>/coordinador</url-pattern>
@@ -51,6 +59,14 @@
     <servlet-mapping>
         <servlet-name>ActualizarFotoCTO</servlet-name>
         <url-pattern>/actualizarfoto</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ActualizarHojaDeVida</servlet-name>
+        <url-pattern>/actualizarhojadevida</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FiltroAspiranteCTO</servlet-name>
+        <url-pattern>/filtroaspirante</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

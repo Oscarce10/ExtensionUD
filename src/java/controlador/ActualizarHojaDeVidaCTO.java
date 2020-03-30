@@ -8,6 +8,7 @@ package controlador;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Date;
@@ -27,7 +28,7 @@ import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
  * @author USER
  */
 @MultipartConfig
-public class ActualizarFotoCTO extends HttpServlet {
+public class ActualizarHojaDeVidaCTO extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,56 +41,64 @@ public class ActualizarFotoCTO extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
         HttpSession sesion = request.getSession();
+        response.setContentType("text/html;charset=UTF-8");
+
         if (ServletFileUpload.isMultipartContent(request)) {
-            Part foto = request.getPart("foto"); // Retrieves <input type="file" name="file">
-            if (foto.getSize() > 3000000) {
-                request.setAttribute("action", "actualizarfoto");
-                request.setAttribute("fail", "El archivo no debe pesar mas de 3 MB");
-                request.getRequestDispatcher("index.jsp?pid=" + Base64.encodeBase64String("aspirante/actualizarfoto.jsp".getBytes())).forward(request, response);
-                return;
-            }
-            String nombre = Paths.get(foto.getSubmittedFileName()).getFileName().toString(); // MSIE fix.       
+            AspiranteDTO aspirante = new AspiranteDTO(sesion.getAttribute("id").toString());
+            aspirante.consultarInicio();
+            aspirante.consultarHojaDeVida();
+            if (request.getPart("pdf").getSize() != 0) {
+                Part pdf = request.getPart("pdf");
+                if (pdf.getSize() > 10000000) {
+                    request.setAttribute("action", "subirpdf");
+                    request.setAttribute("fail", "El archivo no debe pesar mas de 10 MB");
+                    request.getRequestDispatcher("index.jsp?pid=" + Base64.encodeBase64String("aspirante/actualizarhojadevida.jsp".getBytes())).forward(request, response);
+                    return;
+                }
 
-            String[] extensiones = {"jpeg", "jpg", "png"};
-            String[] extensionArchivo = nombre.split("\\.");
-            for (String item : extensiones) {
-                if (extensionArchivo[1].equals(item)) {
-
-                    AspiranteDTO aspirante = new AspiranteDTO(sesion.getAttribute("id").toString());
-                    aspirante.consultarInicio();
+                String nombre = Paths.get(pdf.getSubmittedFileName()).getFileName().toString(); // MSIE fix.      
+                String[] extensionArchivo = nombre.split("\\.");
+                if (extensionArchivo[1].equals("pdf")) {
 
                     if (aspirante.getFoto() != null && !aspirante.getFoto().equals("")) {
-                        File file = new File("D:\\Users\\USER\\Documents\\NetBeansProjects\\proyecto\\images\\" + aspirante.getFoto());
-                        file.delete();                        
+                        File file = new File("D:\\Users\\USER\\Documents\\NetBeansProjects\\proyecto\\pdf\\" + aspirante.getHoja_de_vida());
+                        file.delete();
                     }
-                    File uploads = new File("D:\\Users\\USER\\Documents\\NetBeansProjects\\proyecto\\images");
-                    String filename = new Date().getTime() + ".jpg";
+                    File uploads = new File("D:\\Users\\USER\\Documents\\NetBeansProjects\\proyecto\\pdf");
+                    String filename = "hojadevida" + aspirante.getId() + ".pdf";
                     File file = new File(uploads, filename);
-                    try (InputStream fileContent = foto.getInputStream()) {
+                    try (InputStream fileContent = pdf.getInputStream()) {
                         Files.copy(fileContent, file.toPath());
                     }
 
-                    aspirante.setFoto(filename);
-                    if (aspirante.subirFoto()) {
-                        request.setAttribute("upload", "success");
-                        request.getRequestDispatcher("index.jsp").forward(request, response);
-                    } else {
-                        System.out.println("File Not uploaded");
-                    }
+                    aspirante.setHoja_de_vida(filename);
+
+                } else {
+                    request.setAttribute("action", "actualizarpdf");
+                    request.setAttribute("fail", "Extension no permitada, escoja un archivo con extension PDF.");
+                    request.getRequestDispatcher("index.jsp?pid=" + Base64.encodeBase64String("aspirante/actualizarhojadevida.jsp".getBytes())).forward(request, response);
+                    return;
                 }
+
             }
-            request.setAttribute("action", "actualizarfoto");
-            request.setAttribute("fail", "Extension no permitada, escoja un archivo con extension JPEG, PNG o JPG.");
-            request.getRequestDispatcher("index.jsp?pid=" + Base64.encodeBase64String("aspirante/actualizarfoto.jsp".getBytes())).forward(request, response);
-            return;
+            aspirante.setFecha_nacimiento(request.getParameter("fechaNacimiento"));
+            aspirante.setDescripcion(request.getParameter("descripcion"));
+            aspirante.setProfesion(request.getParameter("profesion"));
+            aspirante.setHoja_de_vida(aspirante.getHoja_de_vida());
+            if (aspirante.actualizarDatos()) {
+                request.setAttribute("actualizarInfo", "success");
+                request.getRequestDispatcher("index.jsp").forward(request, response);
+            } else {
+                System.out.println("File Not uploaded");
+            }
 
         } else {
-            request.setAttribute("action", "actualizarfoto");
-            request.getRequestDispatcher("index.jsp?pid=" + Base64.encodeBase64String("aspirante/actualizarfoto.jsp".getBytes())).forward(request, response);
-        }
 
+            System.out.println("ENTRA A HOJA DE VIDA");
+            request.setAttribute("action", "actualizarhojadevida");
+            request.getRequestDispatcher("index.jsp?pid=" + Base64.encodeBase64String("aspirante/actualizarhojadevida.jsp".getBytes())).forward(request, response);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

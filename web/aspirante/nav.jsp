@@ -30,8 +30,8 @@
                         Actualizar
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="index.jsp?pid=<%out.print(Base64.encodeBase64String("aspirante/actualizarfoto.jsp".getBytes()));%>">Foto</a>
-                        <a class="dropdown-item" href="#">Hoja de vida</a>
+                        <a class="dropdown-item" href="actualizarfoto">Foto</a>
+                        <a class="dropdown-item" href="actualizarhojadevida">Hoja de vida</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">Ver datos</a>
                     </div>

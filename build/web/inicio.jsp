@@ -59,6 +59,17 @@
     </div>
 
 </div>
+
+<footer class="footer container-fluid ">
+    <p class="text-muted container">
+        Hecho con <i class="fas fa-heart"></i> y mucho <i
+            class="fas fa-coffee"></i> Por Oscar Cely y Michael Moreno <a
+                id="lic" href="https://fontawesome.com/license/free" target="_blank" style="float: right"><span>Licencias
+                Font Awessome</span></a>
+    </p>
+
+
+</footer>
 <script>
     document.title = "Inicio";
 </script>

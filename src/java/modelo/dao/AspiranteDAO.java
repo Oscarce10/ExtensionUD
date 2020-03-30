@@ -86,4 +86,20 @@ public class AspiranteDAO extends Persona{
     public String subirFoto(){
         return "UPDATE aspirante SET foto = ? WHERE uuid LIKE UNHEX(?)";
     }
+    
+    public String consultarHojaDeVida(){
+        return "SELECT fecha_nacimiento, Descripcion, hoja_de_vida, profesion "
+                + "FROM aspirante WHERE uuid LIKE UNHEX(?)"; 
+    }
+    
+    public String actualizarDatos(){
+        return "UPDATE aspirante SET fecha_nacimiento = ?, Descripcion = ?, hoja_de_vida = ?, profesion = ?"
+                + "WHERE uuid LIKE UNHEX(?)";
+    }
+    
+    public String filtroAspirante(){
+        return "SELECT numero_documento, uuid, foto,  primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, correo " +
+                " FROM aspirante " +
+                " WHERE CONCAT(primer_nombre, ' ', segundo_nombre, ' ', primer_apellido, ' ', segundo_apellido) LIKE ? OR numero_documento LIKE ? OR correo LIKE ?";
+    }
 }

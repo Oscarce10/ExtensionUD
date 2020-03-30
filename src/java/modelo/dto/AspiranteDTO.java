@@ -12,6 +12,7 @@ import java.security.spec.InvalidKeySpecException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -32,6 +33,25 @@ public class AspiranteDTO extends Persona{
         super();        
         dao = new AspiranteDAO();
     }    
+
+    public AspiranteDTO(String numero_documento, String foto, String id, String primerNombre, String segundoNombre, String primerApellido, String segundoApellido, String correo, byte[] salt, String clave) {
+        super(id, primerNombre, segundoNombre, primerApellido, segundoApellido, correo, salt, clave);
+        this.numero_documento = numero_documento;
+        this.foto = foto;
+    }
+
+    public AspiranteDTO(String numero_documento, String id, String foto, String primerNombre, String segundoNombre, String primerApellido, String segundoApellido, String correo) {
+        this.id = id;
+        this.numero_documento = numero_documento;
+        this.primerNombre = primerNombre;
+        this.segundoNombre = segundoNombre;
+        this.primerApellido = primerApellido;
+        this.segundoApellido = segundoApellido;
+        this.correo = correo;
+        this.foto = foto;
+    }
+    
+    
 
     public AspiranteDTO(String numero_documento, String celular, String telefono_fijo, String fecha_nacimiento, String foto, String descripcion, String hoja_de_vida, String profesion, int nacionalidad, int tipo_documento, int sexo, int formacion, int ciudad_residencia, AspiranteDAO dao, String id, String primerNombre, String segundoNombre, String primerApellido, String segundoApellido, String correo, String clave, byte[] salt) {
         super(id, primerNombre, segundoNombre, primerApellido, segundoApellido, correo, salt, clave);
@@ -92,9 +112,8 @@ public class AspiranteDTO extends Persona{
         this.correo = correo;
         dao = new AspiranteDAO(correo);
     }  
+         
     
-    
-
     
 
     public String getNumero_documento() {
@@ -152,13 +171,31 @@ public class AspiranteDTO extends Persona{
     public void setFoto(String foto) {
         this.foto = foto;
     }
-    
-    
+
+    public void setFecha_nacimiento(String fecha_nacimiento) {
+        this.fecha_nacimiento = fecha_nacimiento;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public void setHoja_de_vida(String hoja_de_vida) {
+        this.hoja_de_vida = hoja_de_vida;
+    }
+
+    public void setProfesion(String profesion) {
+        this.profesion = profesion;
+    }
 
     @Override
     public String toString() {
-        return "AspiranteDTO{" + "numero_documento=" + numero_documento + ", celular=" + celular + ", telefono_fijo=" + telefono_fijo + ", fecha_nacimiento=" + fecha_nacimiento + ", foto=" + foto + ", descripcion=" + descripcion + ", hoja_de_vida=" + hoja_de_vida + ", nacionalidad=" + nacionalidad + ", tipo_documento=" + tipo_documento + ", sexo=" + sexo + ", profesion=" + profesion + ", formacion=" + formacion + ", ciudad_residencia=" + ciudad_residencia + '}';
+        return "AspiranteDTO{" + super.toString() + "numero_documento=" + numero_documento + ", celular=" + celular + ", telefono_fijo=" + telefono_fijo + ", fecha_nacimiento=" + fecha_nacimiento + ", foto=" + foto + ", descripcion=" + descripcion + ", hoja_de_vida=" + hoja_de_vida + ", profesion=" + profesion + ", nacionalidad=" + nacionalidad + ", tipo_documento=" + tipo_documento + ", sexo=" + sexo + ", formacion=" + formacion + ", ciudad_residencia=" + ciudad_residencia + ", dao=" + dao + '}';
     }
+    
+    
+
+    
     
     public boolean registrar(){
         try {
@@ -268,6 +305,74 @@ public class AspiranteDTO extends Persona{
             con.cerrarConexion();
         }
         return false;
+    }
+    
+    public void consultarHojaDeVida(){
+        try {
+            PreparedStatement ps = con.getCon().prepareStatement(dao.consultarHojaDeVida());
+            ps.setString(1, id.replace("-", ""));
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                this.fecha_nacimiento = rs.getString(1);
+                this.descripcion = rs.getString(2);
+                this.hoja_de_vida = rs.getString(3);
+                this.profesion = rs.getString(4);                
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AspiranteDTO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally{
+            con.cerrarConexion();
+        }
+    }
+    
+    public boolean actualizarDatos(){
+        try {
+            PreparedStatement ps = con.getCon().prepareStatement(dao.actualizarDatos());
+            ps.setString(1, fecha_nacimiento);
+            ps.setString(2, descripcion);
+            ps.setString(3, hoja_de_vida);
+            ps.setString(4, profesion);
+            ps.setString(5, id.replace("-", ""));
+            if(ps.executeUpdate()>0){
+                return true;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AspiranteDTO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally{
+            con.cerrarConexion();
+        }
+        return false;
+    }
+    
+    public ArrayList<AspiranteDTO> filtroAspirante(String filtro){
+        ArrayList<AspiranteDTO> lista = null;
+        try {            
+            PreparedStatement ps = con.getCon().prepareStatement(dao.filtroAspirante());
+            ps.setString(1, "%" + filtro + "%");
+            ps.setString(2, "%" + filtro + "%");
+            ps.setString(3, "%" + filtro + "%");
+            System.out.println(ps.toString());
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                String numDoc = rs.getString(1);
+                String id = Pbkdf2.bytesToString(rs.getBytes(2));
+                String foto = rs.getString(3);
+                String primerNombre = rs.getString(4);
+                String segNombre = rs.getString(5);
+                String primerApellido = rs.getString(6);
+                String segundoApellido = rs.getString(7);
+                String correo = rs.getString(8);
+                AspiranteDTO aspirante = new AspiranteDTO(numero_documento, id, foto, primerNombre, segundoNombre, primerApellido, segundoApellido, correo);
+                
+                System.out.println(aspirante.toString());
+                lista.add(aspirante);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AspiranteDTO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally{
+            con.cerrarConexion();
+        }
+        return lista;
     }
      
 }

@@ -5,9 +5,17 @@
 <%@include file="nav.jsp"%>
 
 <%
-    if (request.getAttribute("upload") != null && request.getAttribute("upload").toString().equals("success")) { %>
+    if (request.getAttribute("uploadfoto") != null && request.getAttribute("uploadfoto").toString().equals("success")) { %>
 <div class="alert alert-success container" role="alert" style="margin-top: 150px;">
     Foto actualizada.
+</div>
+
+<% } %>
+
+<%
+    if (request.getAttribute("actualizarInfo") != null && request.getAttribute("actualizarInfo").toString().equals("success")) { %>
+<div class="alert alert-success container" role="alert" style="margin-top: 150px;">
+    Informacion actualizada.
 </div>
 
 <% } %>

@@ -202,6 +202,8 @@
                             <button type="submit" class="btn btn-success btn-lg" name="registrar" value="registrar">Registrar</button>
                             <a class="btn btn-secondary btn-lg" href="index.jsp" style="float: right">Volver</a>
                         </div>
+
+                        
                     </form>
                 </div>
             </div>
