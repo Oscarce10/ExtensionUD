@@ -43,7 +43,7 @@
     <div class="row justify-content-center">
         <div class="col col-md-auto col-lg-6">
             <div class="card" id="cardRegistroUsuario">
-                <div class="card-header bg-primary text-white">Registro Usuario</div>
+                <div class="card-header bg-primary text-white">Registro Aspirante</div>
                 <div class="card-body"> 
                     <%
                         if (request.getAttribute("fail") != null && request.getAttribute("fail").toString().equals("correo")) {
@@ -155,7 +155,7 @@
                                 <div class="col">
                                     <label for="nombre">Genero</label>
                                     <br>
-                                    <input type="radio" id="male" name="sexo" value="1">
+                                    <input type="radio" id="male" name="sexo" value="1" required="required">
                                     <label for="male">Masculino</label><br>
                                     <input type="radio" id="female" name="sexo" value="2">
                                     <label for="female">Femenino</label><br>
@@ -185,12 +185,13 @@
                                 </div>
 
                                 <div class="col">
-                                    <label for="nombre">Formacion</label>
-                                    <select id="formacion" name="formacion">
-                                        <c:forEach var="obFor" items="${listaFor}">
-                                            <option value="${obFor.getId()}">${obFor.getFormacion()}</option>
-                                        </c:forEach>                                        
-                                    </select>
+                                    <label for="formacion">Formacion</label>
+                                    <div><select id="formacion" name="formacion">
+                                            <c:forEach var="obFor" items="${listaFor}">
+                                                <option value="${obFor.getId()}">${obFor.getFormacion()}</option>
+                                            </c:forEach>                                        
+                                        </select>
+                                    </div>
                                 </div>
 
 
@@ -203,7 +204,7 @@
                             <a class="btn btn-secondary btn-lg" href="index.jsp" style="float: right">Volver</a>
                         </div>
 
-                        
+
                     </form>
                 </div>
             </div>

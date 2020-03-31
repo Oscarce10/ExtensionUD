@@ -51,4 +51,14 @@ public class CoordinadorDAO extends Persona{
      public String consultarTodos(){
          return "SELECT * FROM coordinador";
      }
+     
+     public String consultarCorreo(){
+        return "SELECT correo FROM aspirante WHERE CORREO LIKE ? UNION SELECT correo FROM coordinador WHERE CORREO LIKE ?";
+    }
+     
+     public String filtroCoordinador(){
+        return "SELECT primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, correo " +
+                " FROM coordinador " +
+                " WHERE CONCAT(primer_nombre, ' ', segundo_nombre, ' ', primer_apellido, ' ', segundo_apellido) LIKE ?  OR correo LIKE ?";
+    }
 }

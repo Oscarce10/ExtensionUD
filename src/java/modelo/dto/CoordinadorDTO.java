@@ -129,5 +129,49 @@ public class CoordinadorDTO extends Persona{
         }
         return lista;
     }
+    
+    public boolean consultarCorreo(){
+        try {
+            PreparedStatement ps = con.getCon().prepareStatement(dao.consultarCorreo());
+            ps.setString(1, correo);
+            ps.setString(2, correo);
+            System.out.println(ps.toString());
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                return true;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AspiranteDTO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally{
+            con.cerrarConexion();
+        }
+        return false;
+    }
+    
+    public ArrayList<CoordinadorDTO> filtroCoordinador(String filtro){
+        ArrayList<CoordinadorDTO> lista = new ArrayList<>();
+        try {            
+            PreparedStatement ps = con.getCon().prepareStatement(dao.filtroCoordinador());
+            ps.setString(1, "%" + filtro + "%");
+            ps.setString(2, "%" + filtro + "%");
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                CoordinadorDTO coordinador = new CoordinadorDTO();
+                coordinador.setPrimerNombre(rs.getString(1));
+                coordinador.setSegundoNombre(rs.getString(2));
+                coordinador.setPrimerApellido(rs.getString(3));
+                coordinador.setSegundoApellido(rs.getString(4));
+                coordinador.setCorreo(rs.getString(5));               
+                //AspiranteDTO aspirante = new AspiranteDTO(numero_documento, id, foto, primerNombre, segundoNombre, primerApellido, segundoApellido, correo);                
+                System.out.println(coordinador.toString());
+                lista.add(coordinador);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AspiranteDTO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally{
+            con.cerrarConexion();
+        }
+        return lista;
+    }
         
 }

@@ -4,6 +4,11 @@
     String fechaNacimiento = aspirante.getFecha_nacimiento();
     String profesion = aspirante.getProfesion();
     String descripcion = aspirante.getDescripcion();
+    if(request.getAttribute("fail") != null){
+        fechaNacimiento = request.getParameter("fechaNacimiento");
+        profesion = request.getParameter("profesion");
+        descripcion = request.getParameter("descripcion");
+    }
     %>
 
 <script src="https://cdn.tiny.cloud/1/2q2zqw2txah5dkoycgz1rvf25b77xewpmvblaib6mlxcl493/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>

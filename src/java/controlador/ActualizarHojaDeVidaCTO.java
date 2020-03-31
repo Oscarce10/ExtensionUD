@@ -60,8 +60,8 @@ public class ActualizarHojaDeVidaCTO extends HttpServlet {
                 String nombre = Paths.get(pdf.getSubmittedFileName()).getFileName().toString(); // MSIE fix.      
                 String[] extensionArchivo = nombre.split("\\.");
                 if (extensionArchivo[1].equals("pdf")) {
-
-                    if (aspirante.getFoto() != null && !aspirante.getFoto().equals("")) {
+                    System.out.println(new File("D:\\Users\\USER\\Documents\\NetBeansProjects\\proyecto\\pdf\\" + aspirante.getHoja_de_vida()).exists());
+                    if (aspirante.getHoja_de_vida()!= null && !aspirante.getHoja_de_vida().equals("") || new File("D:\\Users\\USER\\Documents\\NetBeansProjects\\proyecto\\pdf\\" + aspirante.getHoja_de_vida()).exists()) {
                         File file = new File("D:\\Users\\USER\\Documents\\NetBeansProjects\\proyecto\\pdf\\" + aspirante.getHoja_de_vida());
                         file.delete();
                     }
@@ -71,7 +71,7 @@ public class ActualizarHojaDeVidaCTO extends HttpServlet {
                     try (InputStream fileContent = pdf.getInputStream()) {
                         Files.copy(fileContent, file.toPath());
                     }
-
+                    System.out.println("Hoja de vida: " + filename);
                     aspirante.setHoja_de_vida(filename);
 
                 } else {

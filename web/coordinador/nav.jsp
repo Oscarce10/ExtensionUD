@@ -25,7 +25,7 @@
                     Consultar
                 </a>
                 <div class="dropdown-menu dropdown-menu-right rounded shadow menu-animate slideIn" aria-labelledby="navbarDropdown">
-                    <a class="menu dropdown-item" href="#">
+                    <a class="menu dropdown-item" href="index.jsp?pid=<%out.print(Base64.encodeBase64String("coordinador/consultarcoordinador.jsp".getBytes()));%>">
                         Coordinador
                     </a>
                     <a class="menu dropdown-item" href="index.jsp?pid=<%out.print(Base64.encodeBase64String("coordinador/consultaraspirante.jsp".getBytes()));%>">
@@ -39,8 +39,8 @@
                     Registrar
                 </a>
                 <div class="menu dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="menu dropdown-item" href="#"> Coordinador</a>
-                    <a class="menu dropdown-item" href="#"> Aspirante</a>
+                    <a class="menu dropdown-item" href="registrocoordinador"> Coordinador</a>
+                    <a class="menu dropdown-item" href="index.jsp?pid=<%out.print(Base64.encodeBase64String("coordinador/registraraspirante.jsp".getBytes()));%> "> Aspirante</a>
 
                 </div>
             </div>

@@ -72,7 +72,7 @@ public class AspiranteDAO extends Persona{
     }
     
     public String consultarCorreo(){
-        return "SELECT * FROM aspirante WHERE CORREO LIKE ?";
+        return "SELECT correo FROM aspirante WHERE CORREO LIKE ? UNION SELECT correo FROM coordinador WHERE CORREO LIKE ?";
     }
     
     public String autenticar(){
@@ -130,6 +130,6 @@ public class AspiranteDAO extends Persona{
     public String formacion(){
         return  "SELECT f.tipo_de_formacion "
                 + "FROM formacion as f, aspirante as a "
-                + "WHERE a.sexo = f.id AND a.uuid LIKE UNHEX(?)";
+                + "WHERE a.formacion = f.id AND a.uuid LIKE UNHEX(?)";
     }
 }

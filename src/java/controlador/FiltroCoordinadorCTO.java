@@ -10,17 +10,19 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import modelo.dto.AspiranteDTO;
+import modelo.dto.CoordinadorDTO;
 import org.apache.tomcat.util.codec.binary.Base64;
 
 /**
  *
  * @author USER
  */
-public class FiltroAspiranteCTO extends HttpServlet {
+@WebServlet(name = "FiltroCoordinadorCTO", urlPatterns = {"/filtrocoordinador"})
+public class FiltroCoordinadorCTO extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,15 +35,12 @@ public class FiltroAspiranteCTO extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        CoordinadorDTO coordinador = new CoordinadorDTO();
+        ArrayList<CoordinadorDTO> coordinadores = new ArrayList<>();
+        coordinadores.addAll(coordinador.filtroCoordinador(request.getParameter("filtro")));
         response.setContentType("text/html;charset=UTF-8");
-        System.out.println("PARAMETRO RECIBIDO: " + request.getParameter("filtro"));
-        AspiranteDTO aspirante = new AspiranteDTO();
-        ArrayList<AspiranteDTO> aspirantes = new ArrayList<>();
-        aspirantes.addAll(aspirante.filtroAspirante(request.getParameter("filtro")));
         try (PrintWriter out = response.getWriter()) {
-
-            /* TODO output your page here. You may use following sample code. */
+                /* TODO output your page here. You may use following sample code. */
             out.print("<script type=\"text/javascript\" src=\"js/script.js\"></script>");
             out.println("<div class=\"card\" style=\"margin-top: 20px;\">");
             out.println("<div class=\"card-header bg-primary text-white\">Resultado Aspirantes");
@@ -50,34 +49,23 @@ public class FiltroAspiranteCTO extends HttpServlet {
             out.println("<table class=\"table table-striped table-hover\">");
             out.println("<thead>");
             out.println("<tr>");
-            out.println("<th scope=\"col\">Documento</th>");
             out.println("<th scope=\"col\">Nombres</th>");
             out.println("<th scope=\"col\">Apellidos</th>");
             out.println("<th scope=\"col\">Correo</th>");
-            out.println("<th scope=\"col\">Foto</th>");
-            out.println("<th scope=\"col\">Opciones</th>");
             out.println("</tr>");
             out.println("</thead>");
             out.println("<tbody>");
-            if (aspirantes != null) {
-                for (AspiranteDTO a : aspirantes) {
+            if (coordinadores != null) {
+                for (CoordinadorDTO a : coordinadores) {
                     out.println("<tr id=" + a.getId() + ">");
-                    out.println("<th scope=\"row\">" + a.getNumero_documento()+ "</th>");
                     out.println("<td>" + a.getPrimerNombre() + " " + a.getSegundoNombre() + "</td>");
                     out.println("<td>" + a.getPrimerApellido() + " " + a.getSegundoApellido() + "</td>");
                     out.println("<td>" + a.getCorreo() + "</td>");
-                    out.println("<td>");
-                    if (a.getFoto() != null && !a.getFoto().equals("") && new File("D:\\Users\\USER\\Documents\\NetBeansProjects\\proyecto\\images\\" + a.getFoto()).exists()) {
-                        out.println("<img src=\"images/" + a.getFoto() + "\" alt=\"Foto aspirante\" class=\"rounded-full h-100 w-100 flex items-center justify-center \" id=\"consulta-foto-aspirante\" width=\"100px\">");
-                    } else {
-                        out.println("<i class='fas fa-user-circle fa-8x'></i>");
-                    }
-                    out.println("</td>");
-                    out.print("<td><a href='indexAjax.jsp?pid=" + Base64.encodeBase64String("coordinador/modalaspirante.jsp".getBytes()) + "&id=" + a.getId() +"' data-toggle='modal' data-target='#modalAspirante' ><span class='fas fa-eye' data-toggle='tooltip' class='tooltipLink' data-placement='right' data-original-title='Ver Detalles' ></span> </a>");
+                                      
                     
                 }
             }
-            out.print("<tr><td colspan='6' class=\"text-center\">" + aspirantes.size() + " registros encontrados</td></tr>");
+            out.print("<tr><td colspan='6' class=\"text-center\">" + coordinadores.size() + " registros encontrados</td></tr>");
             out.println("</tbody>");
             out.println("</table>");
             out.println("</div>");

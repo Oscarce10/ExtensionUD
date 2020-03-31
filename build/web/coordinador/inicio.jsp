@@ -8,6 +8,13 @@
 
 <div class="jumbotron container" id="jumboRegistro" style="margin-top: 150px;">
     <div class="row">
+        <% if (request.getParameter("created") != null) { %>
+        <div class="alert alert-success" role="alert">
+            <% out.print(request.getParameter("created")); %> creado
+        </div>
+        <% } %>
+    </div>
+    <div class="row">
         <div class="col-12">
             <div class="card" id="cardInicioCoordinador">
                 <div class="card-header bg-primary text-white">Bienvenido Coordinador</div>

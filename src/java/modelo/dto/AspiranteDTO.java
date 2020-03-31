@@ -269,6 +269,7 @@ public class AspiranteDTO extends Persona{
         try {
             PreparedStatement ps = con.getCon().prepareStatement(dao.consultarCorreo());
             ps.setString(1, correo);
+            ps.setString(2, correo);
             ResultSet rs = ps.executeQuery();
             if(rs.next()){
                 return true;

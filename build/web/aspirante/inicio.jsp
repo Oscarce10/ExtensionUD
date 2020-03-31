@@ -6,7 +6,7 @@
 
 <%
     if (request.getAttribute("uploadfoto") != null && request.getAttribute("uploadfoto").toString().equals("success")) { %>
-<div class="alert alert-success container" role="alert" style="margin-top: 150px;">
+<div class="alert alert-success container" role="alert" style="margin-top: 70px;">
     Foto actualizada.
 </div>
 
@@ -14,14 +14,14 @@
 
 <%
     if (request.getAttribute("actualizarInfo") != null && request.getAttribute("actualizarInfo").toString().equals("success")) { %>
-<div class="alert alert-success container" role="alert" style="margin-top: 150px;">
+<div class="alert alert-success container" role="alert" style="margin-top: 70px;">
     Informacion actualizada.
 </div>
 
 <% } %>
 
 
-<div class="jumbotron container" id="jumboAspirante" style="margin-top: 150px;">
+<div class="jumbotron container" id="jumboAspirante">
 
     <div class="row">        
         <div class="col-12">

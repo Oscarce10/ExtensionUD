@@ -74,13 +74,22 @@
                     </tr>
                     <tr>
                         <th width="30%">Hoja de vida</th>
+                        <%if(aspirante.getHoja_de_vida() != null && !aspirante.getHoja_de_vida().equals("")){ %>
                         <td><embed src="<%out.print("pdf/" + aspirante.getHoja_de_vida());%>" type="application/pdf" width="800" height="780" style="border: none;"/></td>
+                        <% } else { %>
+                        <td>No se ha subido la hoja de vida</td>
+                        <% } %>
                     </tr>
                     
                     <tr>
                         <th width="30%">Descripcion</th>
-                        <td><div contenteditable="true"><%out.print(aspirante.getDescripcion());%></div></td>
-                    </tr>
+                        <%if(aspirante.getDescripcion() != null && !aspirante.getDescripcion().equals("")){ %>
+                        <td><div contenteditable="false" id="descripcion"><%out.print(aspirante.getDescripcion());%></div></td>
+                        <% } else { %>
+                        <td>No hay descripcion</td>
+                        <% } %>
+                        
+                    </tr>                   
                     
 
                 </tbody>

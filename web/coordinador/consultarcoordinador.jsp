@@ -14,7 +14,7 @@
                         <div class="form-group row">
                             <label for="inputFiltro" class="col-sm-1 col-form-label"><i class="fas fa-search" aria-hidden="true"></i> </label>
                             <div class="col">
-                                <input type="text" class="form-control" id="formConsulta" placeholder="Buscar aspirante por nombres, apellidos, documento o correo"
+                                <input type="text" class="form-control" id="formConsulta" placeholder="Buscar coordinador por nombres, apellidos, o correo"
                                        aria-label="Search">
                             </div>
                         </div>
@@ -28,7 +28,7 @@
 
     </div>
 
-    <div class="modal fade bd-example-modal-xl" tabindex="-1" id="modalAspirante" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+    <div class="modal fade bd-example-modal-xl" tabindex="-1" id="modalCoordinador" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl" role="document">
             <div class="modal-content" id="modalContent"></div>
         </div>
@@ -47,7 +47,7 @@
             console.log($("#formConsulta").val());
             if ($("#formConsulta").val() != "") {
                 $("#tabla").show();
-                var ruta = "filtroaspirante";
+                var ruta = "filtrocoordinador";
 
 
                 $("#tabla").load(ruta, {"filtro": $("#formConsulta").val()});

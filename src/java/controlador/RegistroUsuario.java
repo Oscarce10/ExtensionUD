@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import modelo.dto.AspiranteDTO;
 import org.apache.tomcat.util.codec.binary.Base64;
 
@@ -31,15 +32,22 @@ public class RegistroUsuario extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession sesion = request.getSession();
         response.setContentType("text/html;charset=UTF-8");
         if (request.getParameter("registrar") != null) {
             AspiranteDTO aspirante = new AspiranteDTO(request.getParameter("correo"));
-            System.out.println(aspirante.consultarCorreo());
             if (aspirante.consultarCorreo()) {
-                request.setAttribute("fail", "correo");
-                request.setAttribute("action", "signup");
-                request.getRequestDispatcher("index.jsp?pid=" + Base64.encodeBase64String("registrousuario.jsp".getBytes())).forward(request, response);
-                return;
+                if (sesion.getAttribute("id") != null) {
+                    request.setAttribute("fail", "correo");
+                    request.setAttribute("action", "signup");
+                    request.getRequestDispatcher("index.jsp?pid=" + Base64.encodeBase64String("coordinador/registraraspirante.jsp".getBytes())).forward(request, response);
+                    return;
+                } else {
+                    request.setAttribute("fail", "correo");
+                    request.setAttribute("action", "signup");
+                    request.getRequestDispatcher("index.jsp?pid=" + Base64.encodeBase64String("registrousuario.jsp".getBytes())).forward(request, response);
+                    return;
+                }
             } else {
                 String pnombre = request.getParameter("pnombre");
                 String snombre = request.getParameter("snombre");
@@ -56,16 +64,25 @@ public class RegistroUsuario extends HttpServlet {
                 int formacion = Integer.parseInt(request.getParameter("formacion"));
                 int sexo = Integer.parseInt(request.getParameter("sexo"));
                 aspirante = new AspiranteDTO(numdoc, celular, telefono, nacionalidad, tipodocumento, sexo, formacion, residencia, pnombre, snombre, papellido, sapellido, correo, clave);
-                if(aspirante.registrar()){
-                    request.setAttribute("action", "registro");
-                    request.setAttribute("registro", "success");
-                    request.getRequestDispatcher("index.jsp?pid=" + Base64.encodeBase64String("inicio.jsp".getBytes())).forward(request, response);
+                if (aspirante.registrar()) {
+                    if (sesion.getAttribute("id") != null) {
+                        request.setAttribute("action", "registro");
+                        request.setAttribute("registro", "success");
+                        request.setAttribute("created", "Aspirante");
+                        request.getRequestDispatcher("index.jsp").forward(request, response);
+                        return;
+                    } else {
+                        request.setAttribute("action", "registro");
+                        request.setAttribute("registro", "success");
+                        request.setAttribute("created", "Aspirante");
+                        request.getRequestDispatcher("index.jsp?pid=" + Base64.encodeBase64String("inicio.jsp".getBytes())).forward(request, response);
+                    }
                 }
             }
-        }else{
-        
-        request.setAttribute("action", "registro");
-        request.getRequestDispatcher("index.jsp?pid=" + Base64.encodeBase64String("registrousuario.jsp".getBytes())).forward(request, response);
+        } else {
+
+            request.setAttribute("action", "registro");
+            request.getRequestDispatcher("index.jsp?pid=" + Base64.encodeBase64String("registrousuario.jsp".getBytes())).forward(request, response);
         }
     }
 

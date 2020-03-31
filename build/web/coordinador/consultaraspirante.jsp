@@ -1,36 +1,37 @@
 <%@include file="nav.jsp"%>
 
 <title>Consultar Aspirante</title>
+<div  id="consultaraspirante">
+    <div class="container form">
+        <div class="card" id="inicio-admin">
+            <div class="card-header bg-primary text-white">Consultar Aspirante
 
-<div class="container form" style="margin-top: 200px;">
-    <div class="card" id="inicio-admin">
-        <div class="card-header bg-primary text-white">Consultar Aspirante
-
-        </div>
-        <div class="card-body">
-            <div>
-                <!-- Search form -->
-                <form>
-                    <div class="form-group row">
-                        <label for="inputFiltro" class="col-sm-1 col-form-label"><i class="fas fa-search" aria-hidden="true"></i> </label>
-                        <div class="col">
-                            <input type="text" class="form-control" id="formConsulta" placeholder="Buscar aspirante por nombre y/o apellido"
-                                   aria-label="Search">
+            </div>
+            <div class="card-body">
+                <div>
+                    <!-- Search form -->
+                    <form>
+                        <div class="form-group row">
+                            <label for="inputFiltro" class="col-sm-1 col-form-label"><i class="fas fa-search" aria-hidden="true"></i> </label>
+                            <div class="col">
+                                <input type="text" class="form-control" id="formConsulta" placeholder="Buscar aspirante por nombres, apellidos, documento o correo"
+                                       aria-label="Search">
+                            </div>
                         </div>
-                    </div>
 
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
+
+        <div id="tabla"></div>
+
     </div>
 
-    <div id="tabla" style="margin-top: 100px;"></div>
-
-</div>
-
-<div class="modal fade bd-example-modal-xl" tabindex="-1" id="modalAspirante" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-xl" role="document">
-        <div class="modal-content" id="modalContent"></div>
+    <div class="modal fade bd-example-modal-xl" tabindex="-1" id="modalAspirante" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content" id="modalContent"></div>
+        </div>
     </div>
 </div>
 

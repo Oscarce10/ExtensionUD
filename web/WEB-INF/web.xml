@@ -36,6 +36,10 @@
         <servlet-name>FiltroAspiranteCTO</servlet-name>
         <servlet-class>controlador.FiltroAspiranteCTO</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RegistroCoordinadorCTO</servlet-name>
+        <servlet-class>controlador.RegistroCoordinadorCTO</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CoordinadorCTO</servlet-name>
         <url-pattern>/coordinador</url-pattern>
@@ -67,6 +71,10 @@
     <servlet-mapping>
         <servlet-name>FiltroAspiranteCTO</servlet-name>
         <url-pattern>/filtroaspirante</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegistroCoordinadorCTO</servlet-name>
+        <url-pattern>/registrocoordinador</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
